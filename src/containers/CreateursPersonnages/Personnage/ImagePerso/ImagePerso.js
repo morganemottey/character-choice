@@ -3,6 +3,8 @@ import Image1 from '../../../../assets/images/persos/player1.png'
 import Image2 from '../../../../assets/images/persos/player2.png'
 import Image3 from '../../../../assets/images/persos/player3.png'
 
+import classes from './ImagePerso.module.css'
+
 const ImagePerso = (props) => {
     let imageToPrint= '';
     if (props.numImg === 1) imageToPrint = Image1
@@ -11,8 +13,12 @@ const ImagePerso = (props) => {
 
     return (
         <div>
-            <div>
-                <img src={imageToPrint} alt='img1'/>
+            <div className="row no-gutters text-center align-items-center">
+                <div className={['col-1', classes.gauche, classes.fleche].join(' ')}></div>
+                <div className='col'>
+                    <img src={imageToPrint} alt='img1'/>
+                </div>
+                <div className={['col-1', classes.droite, classes.fleche].join(' ')}></div>
             </div>
         </div>
     )
