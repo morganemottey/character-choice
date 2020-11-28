@@ -1,13 +1,17 @@
 import React from 'react'
+import Titre from './components/Titre/Titre'
+import Bouton from './components/Bouton/Bouton'
 
 function App() {
   return (
     <div className="container">
-      <h1>Createur de personnage</h1>
+      <Titre>Créateur de Personnages</Titre>
       <div>Personnages</div>
       <div>Armes</div>
-      <button className="btn btn-danger">Réinitialiser</button>
-      <button className="btn btn-success">Créer</button>
+      <div className="row no-gutters">
+        <Bouton typeBtn="btn-danger" css="col-6" clic={()=> console.log('Reinitiliser')}>Réinitialiser</Bouton>
+        <Bouton typeBtn="btn-success" css="col-6" clic={()=> console.log('Créer')}>Créer</Bouton>
+      </div>
     </div>
   );
 }
