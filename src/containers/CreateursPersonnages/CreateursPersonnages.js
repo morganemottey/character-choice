@@ -7,9 +7,9 @@ export default class CreateursPersonnages extends Component {
     state = {
         personnage : {
             image : 1,
-            force: 0,
-            agilité: 0,
-            intelligence: 0
+            force: 2,
+            agilité: 3,
+            intelligence: 4
         },
         nbPoints : 0
     }

@@ -1,13 +1,14 @@
 import React from 'react'
+import Carac from './Carac/Carac'
 
 const CaracteristiquePerso = (props) => {
     return (
         <div>
             <div>Point Restant : <span className="badge badge-success">{props.nbPoints}</span></div>
             <div>
-                Force : {props.force} <br></br>
-                Agilité : {props.agilité} <br></br>
-                Intelligence : {props.intelligence}
+                <Carac nbPointAjout={props.force}>Force</Carac>
+                <Carac nbPointAjout={props.agilité}>Agilité</Carac>
+                <Carac nbPointAjout={props.intelligence}>Intelligence</Carac>
             </div>
         </div>
     )
