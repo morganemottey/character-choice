@@ -1,4 +1,5 @@
 import React from 'react'
+import CaracteristiquePerso from './CaracteristiquePerso/CaracteristiquePerso'
 import ImagePerso from './ImagePerso/ImagePerso'
 
 const Personnage = (props) => {
@@ -6,12 +7,19 @@ const Personnage = (props) => {
         <div>
             <div className="row no-gutters">
                 <div className="col-6">
-                    <ImagePerso numImg={props.image}/>
+                    <ImagePerso 
+                        numImg={props.image}
+                        flecheGauche={props.precedente}
+                        flecheDroite={props.suivante}
+                    />
                 </div>
                 <div className="col-6">
-                    Force : {props.force} <br></br>
-                    Agilité : {props.agilité} <br></br>
-                    Intelligence : {props.intelligence}
+                    <CaracteristiquePerso
+                        nbPoints={props.nbPoints}
+                        force={props.force}
+                        agilité={props.agilité}
+                        intelligence={props.intelligence}
+                    />
                 </div>
             </div>
         </div>

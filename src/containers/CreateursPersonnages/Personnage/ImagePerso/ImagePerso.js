@@ -14,11 +14,11 @@ const ImagePerso = (props) => {
     return (
         <div>
             <div className="row no-gutters text-center align-items-center">
-                <div className={['col-1', classes.gauche, classes.fleche].join(' ')}></div>
+                <div className={['col-1', classes.gauche, classes.fleche].join(' ')} onClick={props.flecheGauche}></div>
                 <div className='col'>
                     <img src={imageToPrint} alt='img1'/>
                 </div>
-                <div className={['col-1', classes.droite, classes.fleche].join(' ')}></div>
+                <div className={['col-1', classes.droite, classes.fleche].join(' ')} onClick={props.flecheDroite}></div>
             </div>
         </div>
     )
