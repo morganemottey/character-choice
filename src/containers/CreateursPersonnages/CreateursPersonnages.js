@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Titre from '../../components/Titre/Titre'
 import Bouton from '../../components/Bouton/Bouton'
 import Personnage from './Personnage/Personnage'
+import Armes from '../Armes/Armes'
 
 export default class CreateursPersonnages extends Component {
     state = {
@@ -11,7 +12,8 @@ export default class CreateursPersonnages extends Component {
             agilité: 0,
             intelligence: 0
         },
-        nbPoints : 7
+        nbPoints : 7,
+        armes: ['arc' , 'epee', 'fleau', 'hache']
     }
     handlePrecedente = () => {
         this.setState(oldState => {
@@ -69,7 +71,7 @@ export default class CreateursPersonnages extends Component {
                 enleverPoint={this.handleEnleverPoint}
                 ajouterPoint={this.handleAjouterPoint}
             />
-            <div>Armes</div>
+            <Armes typeArmes={this.state.armes}/>
             <div className="row no-gutters">
                 <Bouton typeBtn="btn-danger" css="col-6" clic={()=> console.log('Reinitiliser')}>Réinitialiser</Bouton>
                 <Bouton typeBtn="btn-success" css="col-6" clic={()=> console.log('Créer')}>Créer</Bouton>
