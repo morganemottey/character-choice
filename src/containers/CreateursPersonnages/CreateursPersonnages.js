@@ -7,11 +7,11 @@ export default class CreateursPersonnages extends Component {
     state = {
         personnage : {
             image : 1,
-            force: 2,
-            agilité: 3,
-            intelligence: 4
+            force: 0,
+            agilité: 0,
+            intelligence: 0
         },
-        nbPoints : 0
+        nbPoints : 7
     }
     handlePrecedente = () => {
         this.setState(oldState => {
@@ -31,6 +31,32 @@ export default class CreateursPersonnages extends Component {
         })
         console.log('etape suivante')
     }
+    handleEnleverPoint = (carac) => {
+        this.setState((oldState, props) => {
+            if(oldState.personnage[carac] <= 0 || oldState.nbPoints >= 7) return null
+            const newPointCarac = oldState.personnage[carac] - 1;
+            const newNbPoint = oldState.nbPoints + 1;
+            const newPerso = {...oldState.personnage};
+            newPerso[carac] = newPointCarac;
+            return {
+                personnage : newPerso,
+                nbPoints : newNbPoint
+            }
+        })  
+    }
+    handleAjouterPoint = (carac) => {
+        this.setState((oldState, props) => {
+            if(oldState.personnage[carac] >= 5 || oldState.nbPoints <= 0) return null
+            const newPointCarac = oldState.personnage[carac] + 1;
+            const newNbPoint = oldState.nbPoints - 1;
+            const newPerso = {...oldState.personnage}
+            newPerso[carac] = newPointCarac;
+            return {
+                personnage : newPerso,
+                nbPoints : newNbPoint
+            }
+        })
+    }
     render() {
         return (
             <div className="container">
@@ -40,6 +66,8 @@ export default class CreateursPersonnages extends Component {
                 nbPoints={this.state.nbPoints}
                 precedente={this.handlePrecedente}
                 suivante={this.handleSuivante}
+                enleverPoint={this.handleEnleverPoint}
+                ajouterPoint={this.handleAjouterPoint}
             />
             <div>Armes</div>
             <div className="row no-gutters">

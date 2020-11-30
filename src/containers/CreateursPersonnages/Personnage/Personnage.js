@@ -19,6 +19,8 @@ const Personnage = (props) => {
                         force={props.force}
                         agilité={props.agilité}
                         intelligence={props.intelligence}
+                        enleverPoint={props.enleverPoint}
+                        ajouterPoint={props.ajouterPoint}
                     />
                 </div>
             </div>

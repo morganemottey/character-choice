@@ -6,9 +6,20 @@ const CaracteristiquePerso = (props) => {
         <div>
             <div>Point Restant : <span className="badge badge-success">{props.nbPoints}</span></div>
             <div>
-                <Carac nbPointAjout={props.force}>Force</Carac>
-                <Carac nbPointAjout={props.agilité}>Agilité</Carac>
-                <Carac nbPointAjout={props.intelligence}>Intelligence</Carac>
+                <Carac 
+                    nbPointAjout={props.force}
+                    moins={() =>props.enleverPoint('force')}
+                    plus={() => props.ajouterPoint('force')}
+                    >Force</Carac>
+                <Carac nbPointAjout={props.agilité}
+                       moins={() =>props.enleverPoint('agilité')}
+                       plus={() => props.ajouterPoint('agilité')}
+                >Agilité</Carac>
+                <Carac 
+                    nbPointAjout={props.intelligence}
+                    moins={() =>props.enleverPoint('intelligence')}
+                    plus={() => props.ajouterPoint('intelligence')}
+                    >Intelligence</Carac>
             </div>
         </div>
     )

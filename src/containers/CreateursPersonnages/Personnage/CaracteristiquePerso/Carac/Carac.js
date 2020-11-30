@@ -9,9 +9,9 @@ const Carac = (props) => {
     return (
         <div>
             <div className="row no-gutters">
-                <div className= {[classes.signe, classes.moins].join(' ')} onClick={() => console.log('moins')}></div>
+                <div className= {[classes.signe, classes.moins].join(' ')} onClick={props.moins}></div>
                 <div>{props.children}</div> {carre}
-                <div className= {[classes.signe, classes.plus].join(' ')} onClick={() => console.log('plus')}></div>
+                <div className= {[classes.signe, classes.plus].join(' ')} onClick={props.plus}></div>
             </div>
         </div>
     )
