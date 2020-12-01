@@ -10,7 +10,8 @@ export default class CreateursPersonnages extends Component {
             image : 1,
             force: 0,
             agilité: 0,
-            intelligence: 0
+            intelligence: 0,
+            arme: null
         },
         nbPoints : 7,
         armes: ['arc' , 'epee', 'fleau', 'hache']
@@ -59,6 +60,11 @@ export default class CreateursPersonnages extends Component {
             }
         })
     }
+    handleChangeArme = (arme) => {
+        const newPerso = {...this.state.personnage}
+        newPerso.arme = arme
+        this.setState({ personnage: newPerso})
+    }
     render() {
         return (
             <div className="container">
@@ -71,7 +77,11 @@ export default class CreateursPersonnages extends Component {
                 enleverPoint={this.handleEnleverPoint}
                 ajouterPoint={this.handleAjouterPoint}
             />
-            <Armes typeArmes={this.state.armes}/>
+            <Armes 
+                changeArme={this.handleChangeArme}
+                typeArmes={this.state.armes}
+                currentArme={this.state.personnage.arme}
+            />
             <div className="row no-gutters">
                 <Bouton typeBtn="btn-danger" css="col-6" clic={()=> console.log('Reinitiliser')}>Réinitialiser</Bouton>
                 <Bouton typeBtn="btn-success" css="col-6" clic={()=> console.log('Créer')}>Créer</Bouton>
