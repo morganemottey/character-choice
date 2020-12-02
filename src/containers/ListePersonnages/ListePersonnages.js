@@ -8,7 +8,7 @@ export default class ListePersonnages extends Component {
         personnages: null,
         loading: false
     }
-    componentDidMount = () => {
+    loadData = () => {
         this.setState({loading: true})
         axios.get('https://creaperso-8d597.firebaseio.com/persos.json')
         .then(response => { // nous allons transformer les objets en tableau afin d'avoir accès au valeur
@@ -22,6 +22,14 @@ export default class ListePersonnages extends Component {
             this.setState({loading: false})
             console.log('error')
         })
+    }
+    componentDidMount = () => {
+        this.loadData();
+    }
+    componentDidUpdate = (oldProps, oldState) => {
+        if(oldProps.refresh !== this.props.refresh) {
+            this.loadData();
+        }
     }
     render() {
         return (

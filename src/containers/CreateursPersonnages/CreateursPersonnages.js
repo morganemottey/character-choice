@@ -105,10 +105,9 @@ export default class CreateursPersonnages extends Component {
         }
         axios.post('https://creaperso-8d597.firebaseio.com/persos.json', player) // afin de poster notre nouveau player,il suffit de rajouter notre player après 
             .then(response => {
-                this.setState({
-                    loading: false
-                })
+                this.setState({loading: false})
                 this.handleReinitilisation() //permet de réinitiliser les states et notre composant après création de notre personnage
+                this.props.refresh()
             })
             .catch(response => {
                 this.setState({loading: false})
