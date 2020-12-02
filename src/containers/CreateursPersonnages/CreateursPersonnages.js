@@ -65,6 +65,22 @@ export default class CreateursPersonnages extends Component {
         newPerso.arme = arme
         this.setState({ personnage: newPerso})
     }
+    handleReinitilisation = () => {
+        this.setState({
+            personnage : {
+                image : 1,
+                force: 0,
+                agilité: 0,
+                intelligence: 0,
+                arme: null
+            },
+            nbPoints : 7,
+            armes: ['arc' , 'epee', 'fleau', 'hache']
+        })
+    }
+    handleCreate = () => {
+        alert('Personnage validé')
+    }
     render() {
         return (
             <div className="container">
@@ -83,8 +99,8 @@ export default class CreateursPersonnages extends Component {
                 currentArme={this.state.personnage.arme}
             />
             <div className="row no-gutters">
-                <Bouton typeBtn="btn-danger" css="col-6" clic={()=> console.log('Reinitiliser')}>Réinitialiser</Bouton>
-                <Bouton typeBtn="btn-success" css="col-6" clic={()=> console.log('Créer')}>Créer</Bouton>
+                <Bouton typeBtn="btn-danger" css="col-6" clic={this.handleReinitilisation}>Réinitialiser</Bouton>
+                <Bouton typeBtn="btn-success" css="col-6" clic={this.handleCreate}>Créer</Bouton>
             </div>
     </div>
         )
