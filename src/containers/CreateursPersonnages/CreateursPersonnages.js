@@ -16,7 +16,8 @@ export default class CreateursPersonnages extends Component {
         },
         nbPoints : 7,
         armes: null,
-        loading: false
+        loading: false,
+        name: ''
         // armes: ['arc' , 'epee', 'fleau', 'hache'] // remplacement de ce tableau par les infos récupéré en Base de donnée donc on passe armes à null
     }
     componentDidMount = () => { //attention ! ne pas oublier d'indiquer 'armes.json' à la fin de notre url
@@ -98,12 +99,34 @@ export default class CreateursPersonnages extends Component {
         })
     }
     handleCreate = () => {
-        alert('Personnage validé')
+        const player = {
+            perso : {...this.state.personnage},
+            name : this.state.name
+        }
+        axios.post('https://creaperso-8d597.firebaseio.com/persos.json', player) // afin de poster notre nouveau player,il suffit de rajouter notre player après 
+            .then(response => {
+                this.setState({
+                    loading: false
+                })
+                this.handleReinitilisation() //permet de réinitiliser les states et notre composant après création de notre personnage
+            })
+            .catch(response => {
+                this.setState({loading: false})
+                this.handleReinitilisation()
+            })
+        
     }
     render() {
         return (
             <div className="container">
             <Titre>Créateur de Personnages</Titre>
+            { 
+                this.state.loading && <div> Chargement ...</div> 
+            }
+            <div className="form-group">
+                <label htmlFor="inputName">Nom : </label>
+                <input type="text" className="form-control" id="inputName" placeholder="Player Name" value={this.state.name} onChange={(event) => this.setState({name: event.target.value})}/>
+            </div>
             <Personnage 
                 {...this.state.personnage}
                 nbPoints={this.state.nbPoints}
@@ -112,9 +135,6 @@ export default class CreateursPersonnages extends Component {
                 enleverPoint={this.handleEnleverPoint}
                 ajouterPoint={this.handleAjouterPoint}
             />
-            { 
-                this.state.loading && <div> Chargement ...</div> 
-            } 
             {/* une fois le composant monté affichage de notre loader avant chargement de toutes les armes provenant de notre BDD */}
             {
                 this.state.armes &&   //si l'info armes contient des valeurs (qui n'est pas à null) alors nous afficherons bien le composant Armes.
